@@ -64,7 +64,11 @@ public class Calculator extends JFrame implements ActionListener {
         } else if (command.equals("=")) { // 계산 결과
             equation.add(num);
             double result = calculate(equation);
-            inputSpace.setText(String.valueOf(result));
+            if (Double.isNaN(result)) {
+                inputSpace.setText("0으로는 나눌 수 없습니다");
+            } else {
+                inputSpace.setText(String.valueOf(result));
+            }
             num = "";
             equation.clear();
         } else if (command.equals("÷") || command.equals("x") || command.equals("+") || command.equals("-")) { // 연산자
@@ -95,6 +99,9 @@ public class Calculator extends JFrame implements ActionListener {
                     result *= nextNum;
                     break;
                 case "÷":
+                    if (nextNum == 0) {
+                        return Double.NaN; // NaN을 반환하여 0으로 나눌 수 없음 메시지를 표시
+                    }
                     result /= nextNum;
                     break;
             }
