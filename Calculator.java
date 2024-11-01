@@ -14,26 +14,25 @@ public class Calculator extends JFrame {
 
         // 계산기 틀 만들기
         setTitle("계산기");
-        setVisible(true);
         setSize(300, 400);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // 레이아웃 설정
+        setLayout(new BorderLayout());
+
         // 계산 창 만들기
         inputSpace = new JTextField();
-        setLayout(null);
         inputSpace.setEditable(false);
         inputSpace.setBackground(Color.WHITE);
         inputSpace.setHorizontalAlignment(JTextField.RIGHT); // 오른쪽 정렬
         inputSpace.setFont(new Font("Arial", Font.BOLD, 20));
-        inputSpace.setBounds(30, 40, 240, 40);
-        add(inputSpace);
+        add(inputSpace, BorderLayout.NORTH); // 위쪽에 배치
 
         // 버튼 패널 만들기
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(4, 4, 10, 10)); // 4x4 그리드
-        buttonPanel.setBounds(30, 100, 240, 240);
 
         // 버튼 생성 및 추가
         String[] buttons = {
@@ -49,10 +48,10 @@ public class Calculator extends JFrame {
             buttonPanel.add(button);
         }
 
-        add(buttonPanel); // 버튼 패널을 프레임에 추가
+        add(buttonPanel, BorderLayout.CENTER); // 중앙에 버튼 패널 배치
     }
 
     public static void main(String[] args) {
-        new Calculator();
+        new Calculator().setVisible(true);
     }
 }
